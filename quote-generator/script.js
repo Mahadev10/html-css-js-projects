@@ -4,6 +4,8 @@ const authorText = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
+const quoteOrigin =
+  "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?";
 
 function showLoadingSpinner() {
   loader.hidden = false;
@@ -16,42 +18,31 @@ function removeLoadingSpinner() {
     loader.hidden = true;
   }
 }
-// Get Quote from Api
-let count = 0;
-async function getQuote() {
-  showLoadingSpinner();
-    const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
-  const apiUrl =
-    "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
-  try {
-    count++;
-    const response = await fetch(proxyUrl+apiUrl);
-    const data = await response.json();
-    if (data.quoteAuthor === "") {
-      authorText.innerText = "Unknown";
-    } else {
-      authorText.innerText = data.quoteAuthor;
-    }
-    // Dynamically Reduce font size for long quotes
-    if (data.quoteText.length > 120) {
-      quoteText.classList.add("long-quote");
-    } else {
-      quoteText.classList.remove("long-quote");
-    }
-    quoteText.innerText = data.quoteText;
-    // Stop loader
-    removeLoadingSpinner();
-    count = 0;
-  } catch (error) {
-    count++;
-    if (count < 10) {
-      getQuote();
-    } else {
-      quoteText.innerText = "Something Went Wrong...";
-      removeLoadingSpinner();
-      count=0;
-    }
+
+function handleQuoteData(quotedata) {
+  if (quotedata.quoteAuthor === "") {
+    authorText.innerText = "Unknown";
+  } else {
+    authorText.innerText = quotedata.quoteAuthor;
   }
+  // Dynamically Reduce font size for long quotes
+  if (quotedata.quoteText.length > 120) {
+    quoteText.classList.add("long-quote");
+  } else {
+    quoteText.classList.remove("long-quote");
+  }
+  quoteText.innerText = quotedata.quoteText;
+  // Stop loader
+  removeLoadingSpinner();
+}
+
+function handleError(jqXHR, textStatus, errorThrown) {
+  quoteText.innerText = "Something Went Wrong...";
+  removeLoadingSpinner();
+}
+function getQuote() {
+  showLoadingSpinner();
+  $.getJSON(quoteOrigin, handleQuoteData).fail(handleError);
 }
 // Tweet Quote
 function tweetQuote() {
