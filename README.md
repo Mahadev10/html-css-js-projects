@@ -11,4 +11,5 @@
 |07|[interior-weekly]()|[Live Demo](https://mahadev10.github.io/html-css-js-projects/interior-weekly/)|
 |08|[quote-generator](https://github.com/Mahadev10/html-css-js-projects/tree/main/quote-generator)|[Live Demo](https://mahadev10.github.io/html-css-js-projects/quote-generator/)|
 |09|[sally-hart-lightbox](https://github.com/Mahadev10/html-css-js-projects/tree/main/sally-hart-lightbox)|[Live Demo](https://mahadev10.github.io/html-css-js-projects/sally-hart-lightbox/)|
-|10|[sally-hart-photography](https://github.com/Mahadev10/html-css-js-projects/tree/main/sally-hart-photography)|[Live Demo](https://mahadev10.github.io/html-css-js-projects/sally-hart-photography/)
+|10|[sally-hart-photography](https://github.com/Mahadev10/html-css-js-projects/tree/main/sally-hart-photography)|[Live Demo](https://mahadev10.github.io/html-css-js-projects/sally-hart-photography/)|
+|11|[infinite scroll](https://github.com/Mahadev10/html-css-js-projects/tree/main/infinite-scroll)|[Live Demo](https://mahadev10.github.io/html-css-js-projects/infinite-scroll/)|
